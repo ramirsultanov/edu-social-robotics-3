@@ -9,7 +9,7 @@ const int IN4 = 10;
 const int TRIG = 12;
 const int ECHO = 13;
 
-const int LPWR = 90;
+const int LPWR = 100;
 const int RPWR = 255;
 
 const int TX = 1;
@@ -26,8 +26,6 @@ public:
   void right(float vel);
   void stop();
 protected:
-  const double R_MOTOR_COEF = RPWR / 255.;
-  const double L_MOTOR_COEF = LPWR / 255.;
 private:
 };
 
@@ -109,19 +107,19 @@ void Robot::move(int left, int right) {
 }
 
 void Robot::forward(float vel) {
-  return this->move(vel * LPWR * this->R_MOTOR_COEF, vel * RPWR * this->L_MOTOR_COEF);
+  return this->move(vel * LPWR, vel * RPWR);
 }
 
 void Robot::backward(float vel) {
-  return this->move(-vel * LPWR * this->R_MOTOR_COEF, -vel * RPWR * this->L_MOTOR_COEF);
+  return this->move(-vel * LPWR, -vel * RPWR);
 }
 
 void Robot::left(float vel) {
-  return this->move(-vel * LPWR * this->R_MOTOR_COEF, vel * RPWR * this->L_MOTOR_COEF);
+  return this->move(-vel * LPWR, vel * RPWR);
 }
 
 void Robot::right(float vel) {
-  return this->move(vel * LPWR * this->R_MOTOR_COEF, -vel * RPWR * this->L_MOTOR_COEF);
+  return this->move(vel * LPWR, -vel * RPWR);
 }
 
 void Robot::stop() {
